@@ -22,4 +22,3 @@ Para utilizar este sistema de reservas de eventos, asegúrate de tener instalado
 - **npm**
 - **TypeScript**
 
-## Instalación
