@@ -25,17 +25,17 @@ export class SistemaReservas {
 
     realizarReserva(nombre: string, cantidad: number): boolean {
         const evento = this.eventos.find(e => e.nombre === nombre);
-        if (evento) {
-            if (evento.disponibilidad() >= cantidad) {
-                return evento.reservar(cantidad);
-            } else {
-                console.log(`No hay suficientes entradas disponibles para el evento '${nombre}'.`);
-                return false;
-            }
+        if (!evento) {
+            console.log(`No se encontró el evento '${nombre}' para realizar la reserva.`);
+            return false;
         }
-        console.log(`No se encontró el evento '${nombre}' para realizar la reserva.`);
-        return false;
+        if (evento.disponibilidad() < cantidad) {
+            console.log(`No hay suficientes entradas disponibles para el evento '${nombre}'.`);
+            return false;
+        }
+        return evento.reservar(cantidad);
     }
+    
 
     cancelarReserva(nombre: string, cantidad: number): boolean {
         const evento = this.eventos.find(e => e.nombre === nombre);
